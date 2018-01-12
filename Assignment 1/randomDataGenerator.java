@@ -23,9 +23,11 @@ class randomDataGenerator
 		return n;
 	}
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws IOException
 	{
-		for(int x=1;x<=5;x++)
+		String path = System.getProperty("user.dir");
+		PrintWriter w = new PrintWriter(path +"/"+ "Input.txt", "UTF-8");
+		for(int x=1;x<=10;x++)
 		{
 			String s="";
 
@@ -98,17 +100,13 @@ class randomDataGenerator
 			int l2 = numlength(fr);
 			if(l2==1)
 			{
-				s4=String.valueOf(fr)+"0000";
+				s4=String.valueOf(fr)+"000";
 			}
 			else if(l2==2)
 			{
-				s4=String.valueOf(fr)+"000";
-			}
-			else if(l2==3)
-			{
 				s4=String.valueOf(fr)+"00";
 			}
-			else if(l2==4)
+			else if(l2==3)
 			{
 				s4=String.valueOf(fr)+"0";
 			}
@@ -118,10 +116,11 @@ class randomDataGenerator
 			}
 
 			s=s1+s2+s3+"."+s4;
+			w.println(s);
 			System.out.println(s);
 		}
 
-
+		w.close();
 
 
 
