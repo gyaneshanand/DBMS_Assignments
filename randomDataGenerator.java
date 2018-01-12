@@ -66,7 +66,7 @@ class randomDataGenerator
 			
 			//System.out.println(s);
 
-			int fl=randomNo(0,9999);
+			int fl=randomNo(0,99999);
 			//System.out.println(fl);
 			int fr=randomNo(0,99);
 			//System.out.println(fr);
@@ -75,13 +75,17 @@ class randomDataGenerator
 			int l1 = numlength(fl);
 			if(l1==1)
 			{
-				s3="000"+String.valueOf(fl);
+				s3="0000"+String.valueOf(fl);
 			}
 			else if(l1==2)
 			{
-				s3="00"+String.valueOf(fl);
+				s3="000"+String.valueOf(fl);
 			}
 			else if(l1==3)
+			{
+				s3="00"+String.valueOf(fl);
+			}
+			else if(l1==4)
 			{
 				s3="0"+String.valueOf(fl);
 			}
@@ -89,15 +93,30 @@ class randomDataGenerator
 			{
 				s3=String.valueOf(fl);
 			}
+
+
 			int l2 = numlength(fr);
 			if(l2==1)
 			{
-				s4="0"+String.valueOf(fr);
+				s4=String.valueOf(fr)+"0000";
+			}
+			else if(l2==2)
+			{
+				s4=String.valueOf(fr)+"000";
+			}
+			else if(l2==3)
+			{
+				s4=String.valueOf(fr)+"00";
+			}
+			else if(l2==4)
+			{
+				s4=String.valueOf(fr)+"0";
 			}
 			else
 			{
 				s4=String.valueOf(fr);
 			}
+
 			s=s1+s2+s3+"."+s4;
 			System.out.println(s);
 		}
