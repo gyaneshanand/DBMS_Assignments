@@ -13,18 +13,19 @@ class randomDataGenerator
 	    return l;           
 	}
 
-	static int randomNo(int low,int high)
+	static int randomNo(int Min,int Max)
 	{
-		Random r = new Random();
+		/*Random r = new Random();
 		int Low = low;
 		int High = high;
-		int n = r.nextInt(High-Low) + Low;
+		int n = r.nextInt(High-Low) + Low;*/
+		int n = 0 + (int)(Math.random()* ( Max - Min + 1));
 		return n;
 	}
 
 	public static void main(String[] args) 
 	{
-		for(int x=1;x<=100;x++)
+		for(int x=1;x<=5;x++)
 		{
 			String s="";
 
@@ -66,34 +67,36 @@ class randomDataGenerator
 			//System.out.println(s);
 
 			int fl=randomNo(0,9999);
+			//System.out.println(fl);
 			int fr=randomNo(0,99);
-			String s3;
-			String s4;
+			//System.out.println(fr);
+			String s3="";
+			String s4="";
 			int l1 = numlength(fl);
 			if(l1==1)
 			{
-				s3="000"+String.valueOf(n);
+				s3="000"+String.valueOf(fl);
 			}
 			else if(l1==2)
 			{
-				s3="00"+String.valueOf(n);
+				s3="00"+String.valueOf(fl);
 			}
 			else if(l1==3)
 			{
-				s3="0"+String.valueOf(n);
+				s3="0"+String.valueOf(fl);
 			}
 			else
 			{
-				s3=String.valueOf(n);
+				s3=String.valueOf(fl);
 			}
 			int l2 = numlength(fr);
 			if(l2==1)
 			{
-				s4="0"+String.valueOf(n);
+				s4="0"+String.valueOf(fr);
 			}
 			else
 			{
-				s4=String.valueOf(n);
+				s4=String.valueOf(fr);
 			}
 			s=s1+s2+s3+"."+s4;
 			System.out.println(s);
