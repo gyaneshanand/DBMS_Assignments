@@ -1,0 +1,4 @@
+ID Integer 5
+Status String 20
+Price Float 10
+Kloat String 2
