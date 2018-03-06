@@ -1,0 +1,18 @@
+#### TEST CASE 1 
+
+reserve Flight1 Aman1
+reserve Flight1 Aman2
+cancel Flight1 Aman1
+reserve Flight1 Aman3
+my_Flights Flight1
+reserve Flight1 Aman4
+total_Reservations()
+reserve Flight3 Aman5
+my_Flights Flight1
+transfer Flight1 Flight2 Aman1
+transfer Flight1 Flight3 Aman1
+my_Flights Flight2
+total_Reservations()
+
+#### TEST CASE 2
+
