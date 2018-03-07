@@ -7,10 +7,12 @@ public class flight
 {
 	ArrayList <String> passenger_list;
 	String name;
+	int number;
 	public ReentrantLock lock;
-	flight(String name)
+	flight(String name , int number)
 	{
 		this.name = name;
+		this.number = number;
 		passenger_list = new ArrayList <String>();
 		lock = new ReentrantLock();
 	}
