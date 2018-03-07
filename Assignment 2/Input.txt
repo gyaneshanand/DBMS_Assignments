@@ -1,100 +1,20 @@
+transfer Flight4 Flight3 Aman
+reserve Flight5 cGvP4
+total_reservation
 my_flights Aman
-cancel Flight4 Aman
-reserve Flight3 eZLt2
-reserve Flight5 k_4
-my_flights eZLt2
+total_reservation
+reserve Flight5 e4
+total_reservation
+reserve Flight3 lRiw2
+total_reservation
 my_flights Aman
-cancel Flight4 eZLt2
-transfer Flight2 Flight3 eZLt2
-my_flights k_4
-cancel Flight1 k_4
-reserve Flight5 btv4
-reserve Flight4 v_Ta3
+cancel Flight3 lRiw2
+reserve Flight2 N_D1
 total_reservation
-reserve Flight5 4
-transfer Flight1 Flight5 btv4
-my_flights 4
-reserve Flight4 T3
-reserve Flight1 VPVS5
-reserve Flight4 o3
-reserve Flight1  5
-reserve Flight2 CPF1
-my_flights  5
-transfer Flight3 Flight2 o3
-reserve Flight4 x3
-total_reservation
-total_reservation
-reserve Flight3 VHg2
-my_flights  5
-total_reservation
-reserve Flight5 gQfc4
-my_flights CPF1
-transfer Flight3 Flight2 o3
-reserve Flight5 cs_4
-total_reservation
-my_flights T3
-total_reservation
-reserve Flight2 _gC1
-cancel Flight1 4
-cancel Flight3  5
-reserve Flight2 1
-reserve Flight4 Nji3
-transfer Flight5 Flight4 1
-cancel Flight4 eZLt2
-transfer Flight5 Flight4 k_4
-total_reservation
-cancel Flight2 Nji3
-reserve Flight4 b3
-transfer Flight3 Flight4 _gC1
-my_flights 4
-transfer Flight5 Flight2 VPVS5
-my_flights eZLt2
-reserve Flight1 5
-cancel Flight5 T3
+reserve Flight4 ws3
+my_flights lRiw2
 my_flights Aman
-transfer Flight3 Flight1 btv4
-my_flights b3
-my_flights x3
-total_reservation
-transfer Flight1 Flight2 CPF1
-total_reservation
-total_reservation
-transfer Flight3 Flight4 Nji3
-total_reservation
-reserve Flight2 HI1
-reserve Flight2 ex1
-reserve Flight1 rH5
-reserve Flight2 1
-my_flights VHg2
-total_reservation
-my_flights  5
-reserve Flight1 5
-total_reservation
-total_reservation
-reserve Flight4 JB3
-reserve Flight2 reUQ1
-my_flights 5
-total_reservation
-my_flights 4
-reserve Flight2 D1
-cancel Flight3 5
-cancel Flight1 gQfc4
-transfer Flight2 Flight4 1
-my_flights 1
-total_reservation
-total_reservation
-total_reservation
-cancel Flight3 T3
-transfer Flight5 Flight1 cs_4
-my_flights o3
-cancel Flight1 btv4
-transfer Flight5 Flight5 x3
-cancel Flight3 1
-cancel Flight5 k_4
-transfer Flight4 Flight2 rH5
-transfer Flight5 Flight2 4
-my_flights cs_4
-my_flights 1
-transfer Flight5 Flight5 x3
-transfer Flight1 Flight5 x3
-my_flights rH5
+transfer Flight4 Flight2 lRiw2
+reserve Flight3 yy2
+cancel Flight4 cGvP4
+reserve Flight3 2
