@@ -1,100 +1,100 @@
-my_flights Flight2
+my_flights Aman
+cancel Flight4 Aman
+reserve Flight3 eZLt2
+reserve Flight5 k_4
+my_flights eZLt2
+my_flights Aman
+cancel Flight4 eZLt2
+transfer Flight2 Flight3 eZLt2
+my_flights k_4
+cancel Flight1 k_4
+reserve Flight5 btv4
+reserve Flight4 v_Ta3
 total_reservation
-cancel Flight1 Aman
-total_reservation
-my_flights Flight4
-total_reservation
-cancel Flight3 Aman
-transfer Flight3 Flight3 Aman
-transfer Flight5 Flight2 Aman
-total_reservation
-transfer Flight4 Flight5 Aman
-total_reservation
-reserve Flight1 h5
-cancel Flight2 Aman
-my_flights Flight4
-my_flights Flight2
-transfer Flight3 Flight2 Aman
-reserve Flight1 WYlY5
-my_flights Flight2
-reserve Flight5 g4
-reserve Flight3 2
-cancel Flight1 g4
-transfer Flight1 Flight4 g4
-transfer Flight4 Flight2 g4
-transfer Flight3 Flight5 Aman
-my_flights Flight2
-reserve Flight5 d4
-transfer Flight5 Flight2 h5
-total_reservation
-cancel Flight3 d4
-total_reservation
-my_flights Flight1
-transfer Flight5 Flight5 WYlY5
-my_flights Flight3
-my_flights Flight5
-total_reservation
-transfer Flight3 Flight1 g4
-cancel Flight4 g4
-reserve Flight1 DlR5
-reserve Flight4 D3
-cancel Flight1 Aman
-transfer Flight2 Flight1 2
-transfer Flight1 Flight2 g4
-transfer Flight3 Flight5 d4
-my_flights Flight1
-transfer Flight1 Flight3 h5
-total_reservation
-transfer Flight3 Flight4 DlR5
-transfer Flight2 Flight3 d4
-total_reservation
-my_flights Flight2
-total_reservation
-cancel Flight5 DlR5
+reserve Flight5 4
+transfer Flight1 Flight5 btv4
+my_flights 4
+reserve Flight4 T3
+reserve Flight1 VPVS5
+reserve Flight4 o3
+reserve Flight1  5
+reserve Flight2 CPF1
+my_flights  5
+transfer Flight3 Flight2 o3
+reserve Flight4 x3
 total_reservation
 total_reservation
-transfer Flight5 Flight5 D3
-transfer Flight2 Flight5 g4
-transfer Flight5 Flight5 D3
-transfer Flight1 Flight2 d4
-transfer Flight2 Flight5 D3
-transfer Flight4 Flight1 2
-cancel Flight4 h5
+reserve Flight3 VHg2
+my_flights  5
 total_reservation
-cancel Flight3 2
-my_flights Flight3
+reserve Flight5 gQfc4
+my_flights CPF1
+transfer Flight3 Flight2 o3
+reserve Flight5 cs_4
+total_reservation
+my_flights T3
+total_reservation
+reserve Flight2 _gC1
+cancel Flight1 4
+cancel Flight3  5
+reserve Flight2 1
+reserve Flight4 Nji3
+transfer Flight5 Flight4 1
+cancel Flight4 eZLt2
+transfer Flight5 Flight4 k_4
+total_reservation
+cancel Flight2 Nji3
+reserve Flight4 b3
+transfer Flight3 Flight4 _gC1
+my_flights 4
+transfer Flight5 Flight2 VPVS5
+my_flights eZLt2
+reserve Flight1 5
+cancel Flight5 T3
+my_flights Aman
+transfer Flight3 Flight1 btv4
+my_flights b3
+my_flights x3
+total_reservation
+transfer Flight1 Flight2 CPF1
 total_reservation
 total_reservation
-reserve Flight4 mi3
-cancel Flight1 WYlY5
-cancel Flight2 h5
-my_flights Flight5
-reserve Flight1 SDSl5
+transfer Flight3 Flight4 Nji3
 total_reservation
-my_flights Flight2
+reserve Flight2 HI1
+reserve Flight2 ex1
+reserve Flight1 rH5
+reserve Flight2 1
+my_flights VHg2
 total_reservation
-total_reservation
-reserve Flight2 gF1
-transfer Flight1 Flight4 D3
-total_reservation
-cancel Flight2 2
+my_flights  5
+reserve Flight1 5
 total_reservation
 total_reservation
-reserve Flight3 2
-transfer Flight4 Flight3 2
-reserve Flight3 s2
-transfer Flight4 Flight2 mi3
-transfer Flight3 Flight3 gF1
-cancel Flight2 gF1
-reserve Flight1 kKv5
+reserve Flight4 JB3
+reserve Flight2 reUQ1
+my_flights 5
 total_reservation
-transfer Flight5 Flight3 2
+my_flights 4
+reserve Flight2 D1
+cancel Flight3 5
+cancel Flight1 gQfc4
+transfer Flight2 Flight4 1
+my_flights 1
 total_reservation
-cancel Flight1 s2
 total_reservation
-my_flights Flight1
-cancel Flight2 D3
 total_reservation
-transfer Flight5 Flight3 2
-cancel Flight5 Aman
-cancel Flight2 mi3
+cancel Flight3 T3
+transfer Flight5 Flight1 cs_4
+my_flights o3
+cancel Flight1 btv4
+transfer Flight5 Flight5 x3
+cancel Flight3 1
+cancel Flight5 k_4
+transfer Flight4 Flight2 rH5
+transfer Flight5 Flight2 4
+my_flights cs_4
+my_flights 1
+transfer Flight5 Flight5 x3
+transfer Flight1 Flight5 x3
+my_flights rH5
