@@ -1,3 +1,5 @@
+/*AMAN ROY 2016011
+GYANESH ANAND 2016039*/
 import java.util.*;
 import java.io.*;
 import java.util.concurrent.*;
@@ -53,6 +55,7 @@ public class main1
 		Database d = new Database(list_flights , list_transactions);
 		ArrayList<Transaction1> ar = new ArrayList<Transaction1>();
 		ExecutorService exec = Executors.newFixedThreadPool(1);
+		long startTime = System.nanoTime();
 		while(list_transactions.size()!=0)
 		{
 			Random rand = new Random();
@@ -64,27 +67,26 @@ public class main1
 			String s1 = st.nextToken();
 			if(s1.equals("reserve"))
 			{
-				ar.add(new Transaction1(d,1,st.nextToken(),st.nextToken()));
+				(new Transaction1(d,1,st.nextToken(),st.nextToken())).run();
 			}
 			else if(s1.equals("cancel"))
 			{
-				ar.add(new Transaction1(d,2,st.nextToken(),st.nextToken()));
+				(new Transaction1(d,2,st.nextToken(),st.nextToken())).run();
 			}
 			else if(s1.equals("my_flights"))
 			{
-				ar.add(new Transaction1(d,3,st.nextToken()));
+				(new Transaction1(d,3,st.nextToken())).run();
 			}
 			else if(s1.equals("total_reservation"))
 			{
-				ar.add(new Transaction1(d,4));
+				(new Transaction1(d,4)).run();
 			}
 			else
 			{
-				ar.add(new Transaction1(d,5,st.nextToken(),st.nextToken(),st.nextToken()));
+				(new Transaction1(d,5,st.nextToken(),st.nextToken(),st.nextToken())).run();
 			}
 		}
-		ArrayList<Thread> ar1 = new ArrayList<Thread>();
-		long startTime = System.nanoTime();
+		/*ArrayList<Thread> ar1 = new ArrayList<Thread>();
 		for(int i=0;i<ar.size();i++)
 		{
 			ar1.add(new Thread(ar.get(i)));
@@ -93,7 +95,7 @@ public class main1
 		if(!exec.isTerminated()) {
 		exec.shutdown();
 		exec.awaitTermination(5L, TimeUnit.SECONDS);
-		}
+		}*/
 		for(int i=0;i<5;i++)
 		{
 			for(int j=0;j<d.list_flights.get(i).passenger_list.size();j++)

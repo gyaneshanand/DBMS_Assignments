@@ -1,0 +1,101 @@
+cancel Flight1 Aman
+cancel Flight2 Aman
+my_flights Aman
+transfer Flight3 Flight3 Aman
+cancel Flight2 Aman
+cancel Flight4 Aman
+cancel Flight4 Aman
+cancel Flight1 Aman
+transfer Flight5 Flight5 Aman
+transfer Flight3 Flight5 Aman
+total_reservation
+transfer Flight2 Flight4 Aman
+total_reservation
+total_reservation
+total_reservation
+reserve Flight3 _at2
+cancel Flight4 Aman
+transfer Flight4 Flight5 Aman
+cancel Flight3 _at2
+my_flights Aman
+my_flights _at2
+reserve Flight3 _JU2
+my_flights _at2
+cancel Flight1 _at2
+reserve Flight3 nChr2
+transfer Flight3 Flight5 _JU2
+total_reservation
+total_reservation
+total_reservation
+transfer Flight3 Flight1 Aman
+transfer Flight3 Flight1 _at2
+transfer Flight1 Flight4 nChr2
+cancel Flight1 nChr2
+transfer Flight1 Flight4 _JU2
+total_reservation
+total_reservation
+cancel Flight3 _JU2
+my_flights _JU2
+my_flights _JU2
+transfer Flight3 Flight1 nChr2
+reserve Flight2 ugg_1
+transfer Flight3 Flight4 _at2
+cancel Flight2 nChr2
+my_flights Aman
+reserve Flight4 IycjXf3
+transfer Flight4 Flight1 _at2
+my_flights _at2
+reserve Flight3 CFe2
+cancel Flight1 Aman
+reserve Flight2 1
+total_reservation
+cancel Flight3 IycjXf3
+transfer Flight3 Flight3 Aman
+total_reservation
+cancel Flight5 ugg_1
+reserve Flight3 _rFFeb2
+reserve Flight2 oTEeI1
+my_flights _rFFeb2
+cancel Flight2 nChr2
+transfer Flight4 Flight3 nChr2
+reserve Flight2 e1
+transfer Flight4 Flight2 _at2
+transfer Flight1 Flight3 ugg_1
+reserve Flight3 DC2
+total_reservation
+transfer Flight1 Flight3 _at2
+reserve Flight3 vvXg_U2
+transfer Flight2 Flight1 e1
+cancel Flight2 e1
+reserve Flight4 eYm3
+cancel Flight1 oTEeI1
+transfer Flight3 Flight1 IycjXf3
+reserve Flight5 4
+total_reservation
+reserve Flight2 zRE1
+total_reservation
+total_reservation
+cancel Flight2 _at2
+my_flights _rFFeb2
+total_reservation
+reserve Flight1 Qi_gd5
+reserve Flight3 l_2
+total_reservation
+my_flights e1
+transfer Flight5 Flight3 _rFFeb2
+total_reservation
+transfer Flight2 Flight2 1
+cancel Flight5 Qi_gd5
+reserve Flight5 4
+reserve Flight3 NVcxmi2
+transfer Flight1 Flight1 nChr2
+cancel Flight3 IycjXf3
+transfer Flight2 Flight1 NVcxmi2
+cancel Flight1 4
+my_flights _at2
+my_flights 4
+reserve Flight5 wYiUUZ4
+cancel Flight4 Aman
+reserve Flight3 YLl2
+transfer Flight3 Flight1 _rFFeb2
+

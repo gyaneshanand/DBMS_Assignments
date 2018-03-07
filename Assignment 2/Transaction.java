@@ -1,3 +1,6 @@
+
+/*AMAN ROY 2016011
+GYANESH ANAND 2016039*/
 import java.util.*;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
@@ -12,7 +15,7 @@ public class Transaction implements Runnable
 	String passengerid;
 	int Transactiontype;
 	int Transactionnumber;
-	static locktable l;
+	//static locktable l;
 	public Transaction(Database d,int Transactiontype,String Flight1 , String Flight2 , String passengerid , int Transactionnumber)
 	{
 		this.d = d;
@@ -49,10 +52,10 @@ public class Transaction implements Runnable
 		this.Flight2 = null;
 		this.Transactionnumber = Transactionnumber;
 	}
-	public void addlock (locktable t)
+	/*public void addlock (locktable t)
 	{
 		this.l = t;
-	}
+	}*/
 	public void run()
 	{
 		try
