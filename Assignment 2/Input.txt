@@ -1,20 +1,100 @@
-transfer Flight4 Flight3 Aman
-reserve Flight5 cGvP4
 total_reservation
-my_flights Aman
-total_reservation
-reserve Flight5 e4
-total_reservation
-reserve Flight3 lRiw2
-total_reservation
-my_flights Aman
-cancel Flight3 lRiw2
-reserve Flight2 N_D1
-total_reservation
-reserve Flight4 ws3
-my_flights lRiw2
-my_flights Aman
-transfer Flight4 Flight2 lRiw2
-reserve Flight3 yy2
-cancel Flight4 cGvP4
+cancel Flight4 Aman
+reserve Flight1 _WJ_5
+cancel Flight4 _WJ_5
+cancel Flight4 _WJ_5
+cancel Flight3 Aman
+reserve Flight4 Csu_3
+my_flights Csu_3
+my_flights _WJ_5
+cancel Flight5 Aman
+my_flights _WJ_5
+my_flights _WJ_5
+cancel Flight4 Aman
 reserve Flight3 2
+total_reservation
+cancel Flight4 2
+my_flights _WJ_5
+reserve Flight5 4
+total_reservation
+total_reservation
+cancel Flight1 Aman
+my_flights Csu_3
+cancel Flight4 Csu_3
+cancel Flight2 4
+total_reservation
+total_reservation
+cancel Flight1 Aman
+cancel Flight2 Csu_3
+total_reservation
+my_flights 2
+my_flights Csu_3
+my_flights 2
+reserve Flight2 JGkW1
+total_reservation
+reserve Flight2 1
+cancel Flight2 1
+reserve Flight1 5
+my_flights 4
+my_flights Aman
+reserve Flight5 dF4
+my_flights 5
+my_flights JGkW1
+my_flights _WJ_5
+my_flights 4
+my_flights Aman
+cancel Flight4 dF4
+cancel Flight2 Aman
+reserve Flight5 Jwq4
+total_reservation
+reserve Flight4 _3
+cancel Flight2 _3
+reserve Flight1 ol5
+reserve Flight3 2
+cancel Flight4 _3
+reserve Flight2 YG1
+reserve Flight2 rf1
+cancel Flight3 YG1
+total_reservation
+total_reservation
+cancel Flight3 YG1
+cancel Flight2 2
+my_flights 2
+total_reservation
+reserve Flight5 VBl4
+reserve Flight4 E3
+cancel Flight1 ol5
+my_flights 2
+reserve Flight5 qF4
+total_reservation
+cancel Flight1 _WJ_5
+reserve Flight5 q4
+cancel Flight5 qF4
+total_reservation
+total_reservation
+cancel Flight3 4
+total_reservation
+reserve Flight1 RQ_j5
+reserve Flight1 k5
+my_flights E3
+reserve Flight2 t_1
+reserve Flight1 5
+cancel Flight2 Csu_3
+reserve Flight4 _b_X3
+total_reservation
+reserve Flight5 Bv_4
+my_flights _b_X3
+total_reservation
+reserve Flight5 XsPh4
+total_reservation
+total_reservation
+cancel Flight5 2
+reserve Flight4 3
+cancel Flight5 ol5
+reserve Flight2 UcqR1
+reserve Flight5 4
+cancel Flight2 Jwq4
+cancel Flight2 XsPh4
+reserve Flight2 _1
+my_flights E3
+reserve Flight5 k4
