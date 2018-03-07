@@ -68,11 +68,11 @@ public class Transaction implements Runnable
 				{
 					//System.out.println(l);	
 					while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-					System.out.println(f.name + " locked "+this.Transactionnumber);
+					//System.out.println(f.name + " locked "+this.Transactionnumber);
 					reserve(f,passengerid);
 					//Thread.sleep(100);
 					f.lock.unlock();
-					System.out.println(f.name + " unlocked "+this.Transactionnumber);
+					//System.out.println(f.name + " unlocked "+this.Transactionnumber);
 					break;				}
 			}
 			//System.out.println(-2);
@@ -89,12 +89,12 @@ public class Transaction implements Runnable
 				{
 					//System.out.println(500);
 					while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-					System.out.println(f.name + " locked "+this.Transactionnumber);
+					//System.out.println(f.name + " locked "+this.Transactionnumber);
 					//System.out.println(-500);
 					cancel(f,passengerid);
 					//Thread.sleep(100);
 					f.lock.unlock();
-					System.out.println(f.name + " unlocked "+this.Transactionnumber);
+					//System.out.println(f.name + " unlocked "+this.Transactionnumber);
 					break;
 				}
 			}
@@ -108,13 +108,13 @@ public class Transaction implements Runnable
 			{
 				f = this.d.list_flights.get(i);
 				while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-				System.out.println(f.name + " locked "+this.Transactionnumber);
+				//System.out.println(f.name + " locked "+this.Transactionnumber);
 			}
 			My_Flights(passengerid);
 			for(int i=d.list_flights.size()-1;i>=0;i--)
 			{
 				d.list_flights.get(i).lock.unlock();
-				System.out.println(d.list_flights.get(i).name + " unlocked "+this.Transactionnumber);
+				//System.out.println(d.list_flights.get(i).name + " unlocked "+this.Transactionnumber);
 			}
 		}
 		else if(this.Transactiontype == 4)
@@ -126,7 +126,7 @@ public class Transaction implements Runnable
 				//System.out.println("C" + " "+i);
 				f = this.d.list_flights.get(i);
 				while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-				System.out.println(f.name + " locked "+this.Transactionnumber);
+				//System.out.println(f.name + " locked "+this.Transactionnumber);
 			}
 			//System.out.println(-4);
 			System.out.println(Total_Reservations());
@@ -134,7 +134,7 @@ public class Transaction implements Runnable
 			for(int i=d.list_flights.size()-1;i>=0;i--)
 			{
 				d.list_flights.get(i).lock.unlock();
-				System.out.println(d.list_flights.get(i).name + " unlocked "+this.Transactionnumber);
+				//System.out.println(d.list_flights.get(i).name + " unlocked "+this.Transactionnumber);
 			}
 			//System.out.println(100);
 		}
@@ -162,25 +162,25 @@ public class Transaction implements Runnable
 			if(f.number<f1.number)
 			{
 				while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-				System.out.println(f.name + " locked "+this.Transactionnumber);
+				//System.out.println(f.name + " locked "+this.Transactionnumber);
 				while((!f1.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-				System.out.println(f1.name + " locked "+this.Transactionnumber);
+				//System.out.println(f1.name + " locked "+this.Transactionnumber);
 				Transfer(f,f1,passengerid);
 				f1.lock.unlock();
-				System.out.println(f1.name + " unlocked "+this.Transactionnumber);
+				//System.out.println(f1.name + " unlocked "+this.Transactionnumber);
 				f.lock.unlock();
-				System.out.println(f.name + " unlocked "+this.Transactionnumber);
+				//System.out.println(f.name + " unlocked "+this.Transactionnumber);
 			}
 			else
 			{
 				while((!f1.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-				System.out.println(f1.name + " locked "+this.Transactionnumber);
+				//System.out.println(f1.name + " locked "+this.Transactionnumber);
 				while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-				System.out.println(f.name + " locked "+this.Transactionnumber);
+				//System.out.println(f.name + " locked "+this.Transactionnumber);
 				f.lock.unlock();
-				System.out.println(f.name + " unlocked "+this.Transactionnumber);
+				//System.out.println(f.name + " unlocked "+this.Transactionnumber);
 				f1.lock.unlock();
-				System.out.println(f1.name + " unlocked "+this.Transactionnumber);
+				//System.out.println(f1.name + " unlocked "+this.Transactionnumber);
 			}
 			
 			//System.out.println(100000);

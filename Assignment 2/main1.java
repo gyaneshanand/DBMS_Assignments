@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-
+import java.util.concurrent.*;
 public class main1
 {
 	public static void main(String [] args) throws IOException ,InterruptedException
@@ -51,7 +51,8 @@ public class main1
 			list_transactions.add(input);
 		}
 		Database d = new Database(list_flights , list_transactions);
-		long startTime = System.nanoTime();
+		ArrayList<Transaction1> ar = new ArrayList<Transaction1>();
+		ExecutorService exec = Executors.newFixedThreadPool(1);
 		while(list_transactions.size()!=0)
 		{
 			Random rand = new Random();
@@ -63,34 +64,35 @@ public class main1
 			String s1 = st.nextToken();
 			if(s1.equals("reserve"))
 			{
-				Thread t1 = new Thread(new Transaction1(d,1,st.nextToken(),st.nextToken()));
-				t1.start();
-				t1.join();
+				ar.add(new Transaction1(d,1,st.nextToken(),st.nextToken()));
 			}
 			else if(s1.equals("cancel"))
 			{
-				Thread t1 = new Thread(new Transaction1(d,2,st.nextToken(),st.nextToken()));
-				t1.start();
-				t1.join();
+				ar.add(new Transaction1(d,2,st.nextToken(),st.nextToken()));
 			}
 			else if(s1.equals("my_flights"))
 			{
-				Thread t1 = new Thread(new Transaction1(d,3,st.nextToken()));
-				t1.start();
-				t1.join();
+				ar.add(new Transaction1(d,3,st.nextToken()));
 			}
 			else if(s1.equals("total_reservation"))
 			{
-				Thread t1 = new Thread(new Transaction1(d,4));
-				t1.start();
-				t1.join();
+				ar.add(new Transaction1(d,4));
 			}
 			else
 			{
-				Thread t1 = new Thread(new Transaction1(d,5,st.nextToken(),st.nextToken(),st.nextToken()));
-				t1.start();
-				t1.join();
+				ar.add(new Transaction1(d,5,st.nextToken(),st.nextToken(),st.nextToken()));
 			}
+		}
+		ArrayList<Thread> ar1 = new ArrayList<Thread>();
+		long startTime = System.nanoTime();
+		for(int i=0;i<ar.size();i++)
+		{
+			ar1.add(new Thread(ar.get(i)));
+			exec.execute(ar.get(i));
+		}
+		if(!exec.isTerminated()) {
+		exec.shutdown();
+		exec.awaitTermination(5L, TimeUnit.SECONDS);
 		}
 		for(int i=0;i<5;i++)
 		{

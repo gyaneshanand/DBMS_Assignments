@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-
+import java.util.concurrent.*;
 public class main
 {
 	public static void main(String [] args) throws IOException ,InterruptedException
@@ -51,7 +51,7 @@ public class main
 			list_transactions.add(input);
 		}
 		Database d = new Database(list_flights , list_transactions);
-		long startTime = System.nanoTime();
+		ExecutorService exec = Executors.newFixedThreadPool(4);
 		ArrayList<Transaction> ar = new ArrayList<Transaction>();
 		int c = 1;
 		//locktable l = new locktable();
@@ -114,15 +114,17 @@ public class main
 			ar.get(i).addlock(l);
 		}*/
 		ArrayList<Thread> ar1 = new ArrayList<Thread>();
+		long startTime = System.nanoTime();
 		for(int i=0;i<ar.size();i++)
 		{
 			ar1.add(new Thread(ar.get(i)));
-			ar1.get(i).start();
+			exec.execute(ar.get(i));
 		}
-		for(int i=0;i<ar1.size();i++)
-		{
-			ar1.get(i).join();
+		if(!exec.isTerminated()) {
+		exec.shutdown();
+		exec.awaitTermination(5L, TimeUnit.SECONDS);
 		}
+		long endTime = System.nanoTime();
 		for(int i=0;i<5;i++)
 		{
 			for(int j=0;j<d.list_flights.get(i).passenger_list.size();j++)
@@ -131,7 +133,6 @@ public class main
 			}
 			System.out.println();
 		}
-		long endTime = System.nanoTime();
 		System.out.println("Time in Nanoseconds " + (endTime-startTime));
 
 	}
