@@ -1,0 +1,100 @@
+my_flights Aman
+total_reservation
+total_reservation
+cancel Flight4 Aman
+my_flights Aman
+reserve Flight3 c2
+transfer Flight4 Flight3 c2
+reserve Flight1 dT5
+total_reservation
+cancel Flight5 c2
+my_flights c2
+my_flights c2
+my_flights c2
+transfer Flight1 Flight3 Aman
+reserve Flight4 S_3
+my_flights c2
+transfer Flight1 Flight2 S_3
+my_flights dT5
+transfer Flight3 Flight5 c2
+cancel Flight3 S_3
+cancel Flight4 S_3
+reserve Flight1 H5
+cancel Flight4 H5
+transfer Flight4 Flight3 H5
+transfer Flight1 Flight1 Aman
+my_flights S_3
+reserve Flight5 tg4
+my_flights Aman
+transfer Flight1 Flight5 S_3
+cancel Flight2 c2
+reserve Flight5 4
+total_reservation
+transfer Flight3 Flight5 H5
+transfer Flight2 Flight4 S_3
+cancel Flight1 tg4
+transfer Flight3 Flight1 c2
+my_flights dT5
+total_reservation
+total_reservation
+reserve Flight2 N1
+reserve Flight1 5
+my_flights 4
+transfer Flight4 Flight4 dT5
+total_reservation
+my_flights dT5
+cancel Flight4 Aman
+reserve Flight5 4
+my_flights H5
+cancel Flight3 4
+cancel Flight3 4
+transfer Flight3 Flight5 4
+total_reservation
+reserve Flight5 wW4
+reserve Flight4 yp3
+reserve Flight5 emX4
+total_reservation
+reserve Flight3 hy2
+cancel Flight2 tg4
+reserve Flight2 hCjZ1
+reserve Flight1 _stT5
+transfer Flight1 Flight5 dT5
+transfer Flight4 Flight1 emX4
+total_reservation
+reserve Flight4 tzTZ3
+transfer Flight1 Flight1 hy2
+cancel Flight2 hCjZ1
+reserve Flight1 Oy_t5
+transfer Flight3 Flight3 tzTZ3
+transfer Flight1 Flight3 S_3
+cancel Flight1 H5
+reserve Flight2 1
+reserve Flight1 Ra5
+my_flights hCjZ1
+cancel Flight1 5
+my_flights 1
+reserve Flight1 MQQ5
+my_flights 4
+cancel Flight4 Ra5
+reserve Flight4 _M_P3
+reserve Flight4 tre3
+reserve Flight5 OO4
+transfer Flight2 Flight3 4
+total_reservation
+my_flights Oy_t5
+cancel Flight5 hCjZ1
+transfer Flight2 Flight2 c2
+my_flights tre3
+reserve Flight3  zg2
+cancel Flight4 4
+cancel Flight3 H5
+transfer Flight5 Flight4 1
+cancel Flight5 hy2
+reserve Flight2 1
+cancel Flight1 _M_P3
+total_reservation
+my_flights dT5
+total_reservation
+cancel Flight4 1
+my_flights hy2
+reserve Flight3 tX2
