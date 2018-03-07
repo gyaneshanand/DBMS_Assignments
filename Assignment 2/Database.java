@@ -8,9 +8,11 @@ public class Database
 {
 	public ArrayList<flight> list_flights;
 	public ReentrantLock lock;
-	Database(ArrayList<flight> list )
+	public ArrayList<String> transaction_list;
+	Database(ArrayList<flight> list , ArrayList<String> transaction_list)
 	{
 		this.list_flights = list;
 		lock = new ReentrantLock();
+		this.transaction_list = transaction_list;
 	}
 }

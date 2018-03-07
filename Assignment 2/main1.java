@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class main
+public class main1
 {
 	public static void main(String [] args) throws IOException ,InterruptedException
 	{
@@ -52,9 +52,6 @@ public class main
 		}
 		Database d = new Database(list_flights , list_transactions);
 		long startTime = System.nanoTime();
-		ArrayList<Transaction> ar = new ArrayList<Transaction>();
-		int c = 1;
-		locktable l = new locktable();
 		while(list_transactions.size()!=0)
 		{
 			Random rand = new Random();
@@ -66,62 +63,34 @@ public class main
 			String s1 = st.nextToken();
 			if(s1.equals("reserve"))
 			{
-				String s2 = st.nextToken();
-				ar.add(new Transaction(d,1,s2,st.nextToken(),c));
-				l.map.get(s2).add(c);
-				c++;
+				Thread t1 = new Thread(new Transaction1(d,1,st.nextToken(),st.nextToken()));
+				t1.start();
+				t1.join();
 			}
 			else if(s1.equals("cancel"))
 			{
-				String s2 = st.nextToken();
-				ar.add(new Transaction(d,2,s2,st.nextToken(),c));
-				l.map.get(s2).add(c);
-				c++;
+				Thread t1 = new Thread(new Transaction1(d,2,st.nextToken(),st.nextToken()));
+				t1.start();
+				t1.join();
 			}
 			else if(s1.equals("my_flights"))
 			{
-				ar.add(new Transaction(d,3,st.nextToken(),c));
-				l.map.get("Flight1").add(c);
-				l.map.get("Flight2").add(c);
-				l.map.get("Flight3").add(c);
-				l.map.get("Flight4").add(c);
-				l.map.get("Flight5").add(c);
-				c++;
+				Thread t1 = new Thread(new Transaction1(d,3,st.nextToken()));
+				t1.start();
+				t1.join();
 			}
 			else if(s1.equals("total_reservation"))
 			{
-				ar.add(new Transaction(d,4,c));
-				l.map.get("Flight1").add(c);
-				l.map.get("Flight2").add(c);
-				l.map.get("Flight3").add(c);
-				l.map.get("Flight4").add(c);
-				l.map.get("Flight5").add(c);
-				c++;
+				Thread t1 = new Thread(new Transaction1(d,4));
+				t1.start();
+				t1.join();
 			}
 			else
 			{
-				String s2 = st.nextToken();
-				String s3 = st.nextToken();
-				ar.add(new Transaction(d,5,s2,s3,st.nextToken(),c));
-				l.map.get(s2).add(c);
-				l.map.get(s3).add(c);
-				c++;
+				Thread t1 = new Thread(new Transaction1(d,5,st.nextToken(),st.nextToken(),st.nextToken()));
+				t1.start();
+				t1.join();
 			}
-		}
-		//System.out.println(l.map.get("Flight1").get(0));
-		for(int i=0;i<ar.size();i++)
-		{
-			ar.get(i).addlock(l);
-		}
-		ArrayList<Thread> ar1 = new ArrayList<Thread>();
-		for(int i=0;i<ar.size();i++)
-		{
-			ar1.add(new Thread(ar.get(i)));
-			ar1.get(i).start();
-		}
-		for(int i=0;i<ar1.size();i++)
-		{
-			ar1.get(i).join();
 		}
 		for(int i=0;i<5;i++)
 		{

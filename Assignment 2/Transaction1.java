@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-public class Transaction implements Runnable
+public class Transaction1 implements Runnable
 {
 	//public ArrayList<flight> list_flights;
 	public Database d;
@@ -11,47 +11,37 @@ public class Transaction implements Runnable
 	String Flight2;
 	String passengerid;
 	int Transactiontype;
-	int Transactionnumber;
-	static locktable l;
-	public Transaction(Database d,int Transactiontype,String Flight1 , String Flight2 , String passengerid , int Transactionnumber)
+	public Transaction1(Database d,int Transactiontype,String Flight1 , String Flight2 , String passengerid)
 	{
 		this.d = d;
 		this.Transactiontype = Transactiontype;
 		this.passengerid = passengerid;
 		this.Flight1 = Flight1;
 		this.Flight2 = Flight2;
-		this.Transactionnumber = Transactionnumber;
 	}
-	public Transaction(Database d,int Transactiontype,String Flight1 , String passengerid , int Transactionnumber )
+	public Transaction1(Database d,int Transactiontype,String Flight1 , String passengerid)
 	{
 		this.d = d;
 		this.Transactiontype = Transactiontype;
 		this.passengerid = passengerid;
 		this.Flight1 = Flight1;
 		this.Flight2 = null;
-		this.Transactionnumber = Transactionnumber;
 	}
-	public Transaction(Database d,int Transactiontype,String passengerid , int Transactionnumber )
+	public Transaction1(Database d,int Transactiontype,String passengerid)
 	{
 		this.d = d;
 		this.Transactiontype = Transactiontype;
 		this.passengerid = passengerid;
 		this.Flight1 = null;
 		this.Flight2 = null;
-		this.Transactionnumber = Transactionnumber;
 	}
-	public Transaction(Database d,int Transactiontype , int Transactionnumber )
+	public Transaction1(Database d,int Transactiontype)
 	{
 		this.d = d;
 		this.Transactiontype = Transactiontype;
 		this.passengerid = null;
 		this.Flight1 = null;
 		this.Flight2 = null;
-		this.Transactionnumber = Transactionnumber;
-	}
-	public void addlock (locktable t)
-	{
-		this.l = t;
 	}
 	public void run()
 	{
@@ -66,13 +56,10 @@ public class Transaction implements Runnable
 				f = this.d.list_flights.get(i);
 				if(f.name.equals(Flight1))
 				{
-					//System.out.println(l);	
-					while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-					System.out.println(f.name + " locked");
+					while(!d.lock.tryLock(1000,TimeUnit.MILLISECONDS));
 					reserve(f,passengerid);
-					//Thread.sleep(100);
-					f.lock.unlock();
-					System.out.println(f.name + " unlocked");
+					
+					d.lock.unlock();
 					break;				}
 			}
 			//System.out.println(-2);
@@ -88,13 +75,11 @@ public class Transaction implements Runnable
 				if(f.name.equals(Flight1))
 				{
 					//System.out.println(500);
-					while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-					System.out.println(f.name + " locked");
+					while(!d.lock.tryLock(1000,TimeUnit.MILLISECONDS));
 					//System.out.println(-500);
 					cancel(f,passengerid);
-					//Thread.sleep(100);
-					f.lock.unlock();
-					System.out.println(f.name + " unlocked");
+					
+					d.lock.unlock();
 					break;
 				}
 			}
@@ -104,39 +89,20 @@ public class Transaction implements Runnable
 		else if(this.Transactiontype == 3)
 		{
 			flight f;
-			for(int i=0;i<d.list_flights.size();i++)
-			{
-				f = this.d.list_flights.get(i);
-				while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-				System.out.println(f.name + " locked");
-			}
+			while(!d.lock.tryLock(1000,TimeUnit.MILLISECONDS));
 			My_Flights(passengerid);
-			for(int i=0;i<d.list_flights.size();i++)
-			{
-				d.list_flights.get(i).lock.unlock();
-				System.out.println(d.list_flights.get(i).name + " unlocked");
-			}
+			d.lock.unlock();
 		}
 		else if(this.Transactiontype == 4)
 		{
 			flight f;
 			//System.out.println(4);
-			for(int i=0;i<d.list_flights.size();i++)
-			{
-				//System.out.println("C" + " "+i);
-				f = this.d.list_flights.get(i);
-				while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-				System.out.println(f.name + " locked");
-			}
+			while(!d.lock.tryLock(1000,TimeUnit.MILLISECONDS));
 			//System.out.println(-4);
 			System.out.println(Total_Reservations());
 			//System.out.println(-40);
-			for(int i=0;i<d.list_flights.size();i++)
-			{
-				d.list_flights.get(i).lock.unlock();
-				System.out.println(d.list_flights.get(i).name + " unlocked");
-			}
-			//System.out.println(100);
+			d.lock.unlock();
+			//System.out.println
 		}
 		else 
 		{
@@ -147,9 +113,7 @@ public class Transaction implements Runnable
 				f = this.d.list_flights.get(i);
 				if(f.name.equals(Flight1))
 				{
-					//System.out.println(1131);
-					while((!f.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-					System.out.println(f.name + " locked");
+					//while(!f.lock.tryLock(1000,TimeUnit.MILLISECONDS));
 					break;
 				}
 			}
@@ -158,17 +122,14 @@ public class Transaction implements Runnable
 				f1 = this.d.list_flights.get(i);
 				if(f1.name.equals(Flight2))
 				{
-					while((!f1.lock.tryLock(1000,TimeUnit.MILLISECONDS)));
-					System.out.println(f1.name + " locked");
+					//while(!f1.lock.tryLock(1000,TimeUnit.MILLISECONDS));
 					break;
 				}
 			}
+			while(!d.lock.tryLock(1000,TimeUnit.MILLISECONDS));
 			Transfer(f,f1,passengerid);
-			f.lock.unlock();
-			System.out.println(f.name + " unlocked");
-			f1.lock.unlock();
-			System.out.println(f.name + " unlocked");
-			//System.out.println(100000);
+			d.lock.unlock();
+			//f1.lock.unlock();
 		}
 	}
 	catch(InterruptedException e)
@@ -179,7 +140,6 @@ public class Transaction implements Runnable
 	public void reserve(flight f, String i)
 	{
 		f.add(i);
-		System.out.println("reserved " + i);
 	}
 
 	public int cancel(flight f, String i)
@@ -190,12 +150,10 @@ public class Transaction implements Runnable
 			if(f.passenger_list.get(j).equals(i))
 			{
 				f.passenger_list.remove(j);
-				System.out.println("cancelled "+i);
 				return 1;
 			}
 			j++;
 		}
-		System.out.println("Nothing to delete");
 		return 0;
 	}
 	public void My_Flights(String id)
@@ -233,7 +191,6 @@ public class Transaction implements Runnable
 		if(status==1)
 		{
 			F2.passenger_list.add(i);
-			System.out.println("Transfereed " + i + F1.name + " to" + F2.name);
 		}
 	}
 }
