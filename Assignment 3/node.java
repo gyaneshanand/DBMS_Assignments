@@ -36,3 +36,38 @@ class node
 		this.is_leaf = is_leaf;
 	}
 }
+	public node find(String V)
+	{
+		node c = root;
+		while(!c.is_leaf)
+		{
+			int index;
+			for(index = 0;index < c.values.size();index++)
+			{
+				if(c.values.get(index).compare(V) < 0)
+				{
+					index ++;
+				}
+			}
+			if(index == c.values.size())
+			{
+				c = c.pointers.get(c.pointers.size()-1);
+			}
+			else if(c.values.get(index).compare(V)==0)
+			{
+				c = c.pointers.get(index+1);
+			}
+			else
+			{
+				c = c.pointers.get(index);
+			}
+			for(int i = 0;i < c.values.size();i++)
+			{
+				if(c.values.get(i).compare(V) == 0)
+				{
+					return c;
+				}
+			}
+			return null;
+		}
+	}
