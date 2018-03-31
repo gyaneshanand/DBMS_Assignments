@@ -53,9 +53,9 @@ public class Btree
 			int index;
 			for(index = 0;index < c.values.size();index++)
 			{
-				if(c.values.get(index).compareTo(V) < 0)
+				if(c.values.get(index).compareTo(V) >= 0)
 				{
-					index ++;
+					break;
 				}
 			}
 			if(index == c.values.size())
