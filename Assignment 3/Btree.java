@@ -278,16 +278,30 @@ public class Btree
 {
 	public static void main(String [] args) throws IOException
 	{
+		InputStreamReader ir = new InputStreamReader(System.in);
+		//FileInputStream in = new FileInputStream("Input.txt");
+		//FileOutputStream out = new FileOutputStream("output.txt");
+		/*int c;
+		int count = 0;
+		String s = "";
+		while((c=in.read())!=-1)
+		{
+			String s = "";
+			char ch =(char)c;
+			s +=  Character.toString(ch);
+			count+=1;
+			if(count%48==0)
+			{
+
+			}
+		}*/
+
 		Btree1 b1 = new Btree1();
-		b1.insert("man","parag");
-		b1.insert("aman","parag1");
-		b1.insert("amana","parag2");
-		b1.insert("amanb","parag3");
-		b1.insert("amanc","parag4");
-		b1.insert("ama","parag5");
-		b1.insert("am","parag6");
-		b1.insert("m","parag7");
-		b1.insert("aman10","parag8");
-		b1.insert("aman11","parag9");
+		String ar[] = new String[]{"4","52","100","148","196","244","292","340","388","436"};
+		String ar1[] = new String[]{"Aman","aman","Bman","Cman","Dman","Eama","Gama","Aaaa","Baaa","Caba"};
+		for(int i=0;i<10;i++)
+		{
+			b1.insert(ar1[i],ar[i]);
+		}
 	}
 }
