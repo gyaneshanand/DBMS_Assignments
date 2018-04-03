@@ -1,12 +1,22 @@
 import java.io.*;
 import java.util.*;
 
-class data
+class Record
 {
+	public String flag;
 	public String id;
-	data(String id)
+	public String name;
+	public String dept;
+	public String salary;
+	public String field;
+	Record(String s1 ,String s2 ,String s3 ,String s4 ,String s5)
 	{
-		this.id = id;
+		this.flag =s1;
+		this.id =s2;
+		this.name =s3;
+		this.dept =s4;
+		this.salary =s5;
+
 	}
 }
 class node
@@ -19,6 +29,7 @@ class node
 	boolean is_root;
 	boolean is_leaf;
 	int n = 3;
+	node last_pointers;
 	node(boolean is_root , boolean is_leaf)
 	{
 		values = new ArrayList <String> ();
@@ -27,6 +38,7 @@ class node
 		number_key = 0;
 		this.is_root = is_root;
 		this.is_leaf = is_leaf;
+		this.last_pointers = null;
 	}
 	node(boolean is_root , boolean is_leaf, node parent)
 	{
@@ -36,15 +48,17 @@ class node
 		number_key = 0;
 		this.is_root = is_root;
 		this.is_leaf = is_leaf;
+		this.last_pointers = null;
 	}
 }
 class Btree1
 {
 	public node root;
-	/*Btree()
+	public ArrayList <Record> ar;
+	Btree1()
 	{
-		root = new node(true , false);
-	}*/
+		ar = new ArrayList <Record> ();
+	}
 	public node find(String V, int query)
 	{
 		node c = root;
@@ -55,19 +69,24 @@ class Btree1
 			{
 				if(c.values.get(index).compareTo(V) >= 0)
 				{
+					//index-=1;
 					break;
 				}
 			}
+			//System.out.println(index);
 			if(index == c.values.size())
 			{
+				//System.out.println("Gyanehs");
 				c = c.pointers.get(c.pointers.size()-1);
 			}
 			else if(c.values.get(index).compareTo(V)==0)
 			{
+				//System.out.println("Gyanehsnhr");
 				c = c.pointers.get(index+1);
 			}
 			else
 			{
+				//System.out.println("Gyanehsehcbehd");
 				c = c.pointers.get(index);
 			}
 		}
@@ -84,6 +103,112 @@ class Btree1
 		}
 		return null;
 	}
+	public void printdata(String s , ArrayList<String> arr)
+	{
+		for(int i=0;i<ar.size();i++)
+		{
+			if((!ar.get(i).flag.equals("0000"))&&ar.get(i).field.compareTo(s)==0)
+			{
+				System.out.println("flag "+ar.get(i).flag + "id " +ar.get(i).id + "name " + ar.get(i).name + "department " + ar.get(i).dept + "salary " +ar.get(i).salary );
+			}
+		}
+	}
+	public  void printdata2(String s1, String s2, ArrayList<String> arr)
+	{
+		for(int i=0;i<ar.size();i++)
+		{
+			if((!ar.get(i).flag.equals("0000"))&&ar.get(i).field.compareTo(s1)>=0 && ar.get(i).field.compareTo(s2)<=0)
+			{
+				System.out.println("flag "+ar.get(i).flag + "id " +ar.get(i).id + "name " + ar.get(i).name + "department " + ar.get(i).dept + "salary " +ar.get(i).salary );
+			}
+		}
+	}
+	public void find_original(String V)
+	{
+		node n = find(V,0);
+		if(n!=null)
+		{
+			//System.out.println(n.)
+			for(int i=0;i<n.values.size();i++)
+			{
+				if(n.values.get(i).equals(V))
+				{
+					System.out.println(n.data_pointers.get(i) + " " + i+1);
+					return;
+				}
+			}
+		}
+	}
+	public void find_all(String v)
+	{
+		node n = find(v,0);
+		ArrayList ar = new ArrayList <String>();
+		while(n!=null)
+		{
+			int i;
+			for(i=0;i<n.values.size();i++)
+			{
+
+				if(n.values.get(i).equals(v))
+				{
+					System.out.println(n.data_pointers.get(i) + " " + i+1);
+					ar.add(n.data_pointers.get(i));
+				}
+				else if(n.values.get(i).compareTo(v)>0)
+				{
+					n = null;
+					break;
+				}
+			}
+			if(i==n.values.size())
+			{
+				n = n.last_pointers;
+			}
+		}
+		printdata(v,ar);
+	}
+
+	public void print_range(String v1 , String v2)
+	{
+		node n1 = find(v1,0);
+		node n2 = find(v1,0);
+		ArrayList ar = new ArrayList <String>();
+		while(n1!=n2)
+		{
+			for(int i=0;i<n1.values.size();i++)
+			{
+				if(n1.values.get(i).compareTo(v1)>=0)
+				{
+					ar.add(n1.data_pointers.get(i));
+				}
+			}
+			n1 = n1.last_pointers;
+		}
+		while(n2!=null)
+		{
+			int i;
+			for(i=0;i<n2.values.size();i++)
+			{
+
+				if(n2.values.get(i).compareTo(v2)<=0)
+				{
+					//System.out.println(n.data_pointers.get(i) + " " + i+1);
+					ar.add(n2.data_pointers.get(i));
+					return;
+				}
+				else if(n2.values.get(i).compareTo(v2)>0)
+				{
+					n2b = null;
+					break;
+				}
+			}
+			if(i==n2.values.size())
+			{
+				n2 = n2.last_pointers;
+			}
+		}
+		printdata2(v1,v2,ar);
+	}
 	public void insert(String K , String P)
 	{
 		System.out.println(1);
@@ -97,7 +222,7 @@ class Btree1
 			return;
 		}
 		node L = find(K,1);
-		//System.out.println(L);
+		//System.out.println(L.values.get(0) + "haaaaa");
 		if(L.number_key < L.n) // 5 has to be replaced by n
 		{
 			insert_in_leaf(L,K,P);
@@ -117,6 +242,8 @@ class Btree1
 			}
 			insert_in_leaf(T,K,P);
 			// To be set L1.last pointer = L.lastpointer and L.lastpointer = L1
+			L1.last_pointers = L.last_pointers;
+			L.last_pointers = L1;
 			L.values = new ArrayList<String>();
 			L.data_pointers = new ArrayList<String>();
 			for(int i=0;i<(L.n+1)/2;i++)
@@ -295,13 +422,14 @@ public class Btree
 
 			}
 		}*/
-
+//       
 		Btree1 b1 = new Btree1();
-		String ar[] = new String[]{"4","52","100","148","196","244","292","340","388","436"};
-		String ar1[] = new String[]{"Aman","aman","Bman","Cman","Dman","Eama","Gama","Aaaa","Baaa","Caba"};
+		String ar[] = new String[]{"4","52","100","148","196","244","292","340","388","436" };
+		String ar1[] = new String[]{"Aman","Aman","Bman","Cman","Aman","an","Gama","Aaaa","Baaa","Caba"};
 		for(int i=0;i<10;i++)
 		{
 			b1.insert(ar1[i],ar[i]);
 		}
+		b1.find_original("Aman");
 	}
 }
