@@ -9,13 +9,15 @@ class Record
 	public String dept;
 	public String salary;
 	public String field;
-	Record(String s1 ,String s2 ,String s3 ,String s4 ,String s5)
+	public String num; 
+	Record(String s1 ,String s2 ,String s3 ,String s4 ,String s5,String num)
 	{
 		this.flag =s1;
 		this.id =s2;
 		this.name =s3;
 		this.dept =s4;
 		this.salary =s5;
+		this.num = num;
 
 	}
 }
@@ -107,19 +109,19 @@ class Btree1
 	}
 	public void helper()
 	{
-		for(int i=0;i<ar1.size()-1;i++)
+		for(int i=0;i<ar.size()-1;i++)
 		{
 			int min=i;
-			for(int j=i+1;j<ar1.size();j++)
+			for(int j=i+1;j<ar.size();j++)
 			{
-				if(ar1.get(min).field.compareTo(ar1.get(j).field)<0)
+				if(ar.get(min).field.compareTo(ar.get(j).field)<0)
 				{
 					min = j;
 				}
 			}
-			Record temp = ar1.get(min);
-			ar1.set(min,ar1.get(i));
-			ar1.set(i,temp);
+			Record temp = ar.get(min);
+			ar.set(min,ar.get(i));
+			ar.set(i,temp);
 		}
 	}
 	public void printdata(String s , ArrayList<String> arr)
@@ -134,8 +136,11 @@ class Btree1
 	}
 	public  void printdata2(String s1, String s2, ArrayList<String> arr)
 	{
+		//System.out.println(-1000);
 		for(int i=0;i<ar.size();i++)
 		{
+			/*System.out.println(1000);
+			System.out.println(ar.get(i).field);*/
 			if((!ar.get(i).flag.equals("0000"))&&ar.get(i).field.compareTo(s1)>=0 && ar.get(i).field.compareTo(s2)<=0)
 			{
 				System.out.println("flag "+ar.get(i).flag + "id " +ar.get(i).id + "name " + ar.get(i).name + "department " + ar.get(i).dept + "salary " +ar.get(i).salary );
@@ -148,11 +153,11 @@ class Btree1
 		if(n!=null)
 		{
 			//System.out.println(n.)
-			for(int i=0;i<n.values.size();i++)
+			for(int i=0;i<ar.size();i++)
 			{
-				if(n.values.get(i).equals(V))
+				if(ar.get(i).field.equals(V) && !ar.get(i).flag.equals("0000"))
 				{
-					System.out.println(n.data_pointers.get(i) + " " + i+1);
+					System.out.println(V +" " + ar.get(i).num);
 					return;
 				}
 			}
@@ -170,7 +175,7 @@ class Btree1
 
 				if(n.values.get(i).equals(v))
 				{
-					System.out.println(n.data_pointers.get(i) + " " + i+1);
+					//System.out.println(n.data_pointers.get(i) + " " + i+1);
 					ar.add(n.data_pointers.get(i));
 				}
 				else if(n.values.get(i).compareTo(v)>0)
@@ -179,7 +184,7 @@ class Btree1
 					break;
 				}
 			}
-			if(i==n.values.size())
+			if(n!=null && i==n.values.size())
 			{
 				n = n.last_pointers;
 			}
@@ -190,9 +195,9 @@ class Btree1
 	public void print_range(String v1 , String v2)
 	{
 		node n1 = find(v1,0);
-		node n2 = find(v1,0);
+		node n2 = find(v2,0);
 		ArrayList ar = new ArrayList <String>();
-		while(n1!=n2)
+		while(n1!=null && n2!=null && n1!=n2)
 		{
 			for(int i=0;i<n1.values.size();i++)
 			{
@@ -213,7 +218,7 @@ class Btree1
 				{
 					//System.out.println(n.data_pointers.get(i) + " " + i+1);
 					ar.add(n2.data_pointers.get(i));
-					return;
+					//return;
 				}
 				else if(n2.values.get(i).compareTo(v2)>0)
 				{
@@ -221,7 +226,7 @@ class Btree1
 					break;
 				}
 			}
-			if(i==n2.values.size())
+			if(n2!=null && i==n2.values.size())
 			{
 				n2 = n2.last_pointers;
 			}
@@ -419,37 +424,359 @@ class Btree1
 			insert_in_parent(P,K2,P1);
 		}
 	}
+
+	public void delete(String key, String name) throws IOException
+	{
+		/*Pointer P is not taken as parameter as it can be extracted from the node structure*/
+		node n = find(key,1); /* n contains the leaf node that contains the key key*/
+
+		/*Extracting the data pointer of the key*/
+		String data_pointer = "";
+		for(int i =0;i<n.values.size();i++)
+		{
+			if((n.values.get(i)).compareTo(key)==0)
+			{
+				data_pointer = n.data_pointers.get(i);
+				break;
+			}
+		}
+		/*Calling the function delete_entry() to delete the key*/
+		delete_key(key , name);
+	}
+
+	public void delete_entry(node N , String key , String pointer) throws IOException
+	{
+		N.number_key -= 1;
+		deleteKeyPointer(N,key,pointer);
+
+		/*(N is the root and N has only one remaining child , then make the child of N the new root of the tree and delete N*/
+		if(N.is_root && N.number_key==1)
+		{
+			node child = N.pointers.get(0); /*Child node can be accessed from the 0th pointer of its pointer list*/
+			child.is_root = true; /*the child of N the new root of the tree*/
+			child.parent = null; /* N has no child now it would be garbage collected*/
+			N.is_root = false ;
+		}
+
+		/*N has too few values/pointers*/
+		if(isTooFewPointer(N))
+		{
+			node Nprime = new node(false,false);
+			/*if(N.pointers.get(N.pointers.size()-1) != null)*/
+			node parent_of_N = N.parent;
+			/*getting the index of N in parent of N*/
+			int ind=0;
+			boolean isPred = false;
+			for(int i =0;i<N.values.size();i++)
+			{
+				if((N.values.get(i)).compareTo(key)==0)
+				{
+					ind = i ;
+					break;
+				}
+			}
+			String Kprime = N.values.get(ind);
+			if(ind!=0)
+			{
+				node N1 = parent_of_N.pointers.get(ind-1);
+				double no = (double)N1.number_key;
+				if(no < ((Math.ceil(N1.n/2))+1))
+				{
+					Nprime = N1;
+					isPred = false;
+				}
+			}
+			else
+			{
+				node N2 = parent_of_N.pointers.get(ind+1);
+				double no = (double)N2.number_key;
+				if(no < ((Math.ceil(N2.n/2))+1))
+				{
+					Nprime = N2;
+					isPred = true;
+				}
+			}
+			/*Checking if (entries in N and Nprime can fit in a single node)*/
+			int x = Nprime.number_key + N.number_key;
+			double x1 = (double)x;
+			/* Coalesce nodes */
+			if(x < (N.n - 1))
+			{
+				/*N is a predecessor of N*/
+				if(isPred)
+				{
+					/*swap(N,Nprime);*/
+				}
+			
+				if(N.is_leaf == false)
+				{
+					for(int i =0;i<N.values.size();i++)
+					{
+						Nprime.values.add(N.values.get(i));
+						Nprime.pointers.add(N.pointers.get(i));
+						Nprime.data_pointers.add(N.data_pointers.get(i));
+
+					}
+				}
+				else
+				{
+					for(int i =0;i<N.values.size();i++)
+					{
+						Nprime.values.add(N.values.get(i));
+						Nprime.pointers.add(N.pointers.get(i));
+						Nprime.data_pointers.add(N.data_pointers.get(i));
+
+					}
+
+				}
+				delete_entry(parent_of_N,Kprime,N.data_pointers.get(0));
+				node child = N.pointers.get(0); /*Child node can be accessed from the 0th pointer of its pointer list*/
+				child.parent = null; /* N has no child now it would be garbage collected*/
+			}
+
+			/*else Redistribution: borrow an entry from Nprime */
+			else
+			{
+				if(isPred==false)
+				{
+					if(N.is_leaf == false)
+					{
+						node m = Nprime.pointers.get(Nprime.pointers.size()-1);
+						/*remove(Nprime,m-1);
+						remove(Nprime,m);
+						insertOfDelete(Nprime.pointers.get(Nprime.pointers.size()-1),Kprime);*/
+						node p = parent_of_N.pointers.get(ind);
+						p = parent_of_N.pointers.get(ind-1);						
+					}
+				}
+				else
+				{
+					node m = Nprime.pointers.get(Nprime.pointers.size()-1);
+					/*remove(Nprime,m);
+					insertOfDelete(Nprime.pointers.get(Nprime.pointers.size()-1),Kprime);*/
+					/*replace Kprime in parent(N) by Nprime .K m*/
+					node p = parent_of_N.pointers.get(ind);
+					p = parent_of_N.pointers.get(ind);
+				}
+			}
+		}
+
+	}
+
+	public void deleteKeyPointer(node N ,String key , String pointer) throws IOException
+	{
+		int del = 0;
+		for(int i =0;i<N.values.size();i++)
+		{
+			if((N.values.get(i)).compareTo(key)==0)
+			{
+				del = i ;
+				break;
+			}
+		}
+		N.values.remove(del);
+		/*Also go to that data pointer and make the flag of the Record to be 0000 */
+		/*
+		code here
+		*/
+		N.data_pointers.remove(del);
+	}
+
+	public boolean isTooFewPointer(node N)
+	{
+		double no = (double)N.number_key;
+		if(N.is_leaf)
+		{
+			
+			if(no < Math.ceil((N.n-1)/2))
+			{
+				return true;
+			}
+		}
+		else
+		{
+			if(no < ((Math.ceil(N.n/2))+1))
+			{
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public void delete_key(String key,String name) throws IOException
+	{
+		
+		for(int i = 0; i<ar.size() ; i++)
+		{
+			if((ar.get(i).field).compareTo(key)==0 && ar.get(i).name.equals(name))
+			{
+				ar.get(i).flag = "0000";
+				break;
+			}
+		}
+		
+	}
 }
 
 public class Btree
 {
+	public static void printfile(Btree1 b1) throws IOException
+	{
+		PrintWriter pw = new PrintWriter("data1.txt");
+		for (int i = 0 ;i <b1.ar1.size() ;i++ ) 
+		{
+			for(int j=0 ; j<5 ; j++)
+			{
+				if(j==0)
+				{
+					pw.print(b1.ar1.get(i).flag);
+				}
+				if(j==1)
+				{
+					pw.print(b1.ar1.get(i).id);
+				}
+				if(j==2)
+				{
+					pw.print(b1.ar1.get(i).name);
+				}
+				if(j==3)
+				{
+					pw.print(b1.ar1.get(i).dept);
+				}
+				if(j==4)
+				{
+					pw.print(b1.ar1.get(i).salary);
+				}
+			}
+			
+		}
+
+		pw.close();
+	}
 	public static void main(String [] args) throws IOException
 	{
 		InputStreamReader ir = new InputStreamReader(System.in);
-		//FileInputStream in = new FileInputStream("Input.txt");
-		//FileOutputStream out = new FileOutputStream("output.txt");
-		/*int c;
-		int count = 0;
-		String s = "";
-		while((c=in.read())!=-1)
-		{
-			String s = "";
-			char ch =(char)c;
-			s +=  Character.toString(ch);
-			count+=1;
-			if(count%48==0)
-			{
-
-			}
-		}*/
-//       
+		BufferedReader br = new BufferedReader(ir);
+		System.out.print("Enter the Key type : 1: ID , 2: Flag");
+		int s11 = Integer.parseInt(br.readLine());
+		String s10;
 		Btree1 b1 = new Btree1();
-		String ar[] = new String[]{"4","52","100","148","196","244","292","340","388","436" };
+		
+		FileInputStream fis = new FileInputStream("data.txt");
+		File file = new File("data.txt");
+		long len = file.length();
+		int skipVal[] = {4,4,20,10,10};
+		ArrayList<Record> dataSet = new ArrayList<Record>();
+
+		int offset = 0;
+		long n = len/48;
+		//System.out.println(len);
+		//System.out.println(n);
+		int i;
+			for (i = 0 ;i <n ;i++ ) 
+			{
+				String s1="",s2="",s3="",s4="",s5="";
+
+				offset = (i)*48;
+				for(int j=0 ; j<5 ; j++)
+				{
+					//System.out.println(offset);
+
+					int l = skipVal[j];
+					byte[] bs = new byte[l];
+					//fis.skip(offset);
+		         	int k = fis.read(bs , 0 , l);
+		         	offset += l;
+
+		         	String s = new String(bs, "UTF-8");
+		         	
+		         	//System.out.println(s);
+		         	if(j==0)
+		         	{
+		         		 s1 = s;
+		         	}
+		         	if(j==1)
+		         	{
+		         		s2 =s;
+		         	}
+		         	if(j==2)
+		         	{
+		         		s3 =s;
+		         	}
+		         	if(j==3)
+		         	{
+		         		s4 =s;
+		         	}
+		         	if(j==4)
+		         	{
+		         		s5 =s;
+		         	}
+		        }
+		        Record r = new Record(s1,s2,s3,s4,s5,String.valueOf(i*48));
+		        r.field = s2;
+		        b1.ar.add(r);
+		        b1.ar1.add(r);
+		        b1.insert(s2,String.valueOf(i*48));
+		        b1.helper();
+		        printfile(b1);
+				dataSet.add(r);
+			}
+			/*b1.find_original("2563");
+			//System.out.println("Aman IS kutta");
+			b1.find_all("2563");*/
+			//b1.print_range("2563","5678");
+			/*b1.delete("2563","abcdeabcdeabcdeabcde");
+			printfile(b1);
+			b1.find_all("2563");*/
+			int query = 1; 
+			while(query!=0)
+			{
+				System.out.println("Menu");
+				query = Integer.parseInt(br.readLine());
+				switch(query)
+				{
+					case 1: System.out.println("Enter the key ");
+							b1.find_original(br.readLine());
+							break;
+					case 2: System.out.println("Enter the key ");
+							b1.find_all(br.readLine());
+							break;
+					case 3: System.out.println("Enter the two range of value ");
+							s10 = br.readLine();
+							StringTokenizer st = new StringTokenizer(s10);
+							b1.print_range(st.nextToken(),st.nextToken());
+							break;
+					case 4: System.out.println("Enter the record to be inserted and that too space separated otherwise I am not going to do anything and I have not handled the null pointer error either so your choice");
+							s10 = br.readLine();
+							String [] temp = s10.split(" ");
+							Record r = new Record(temp[0],temp[1],temp[2],temp[3],temp[4],String.valueOf(i*48));
+							r.field = temp[s11];
+							b1.insert(temp[s11],String.valueOf(i*48));
+							i++;
+							b1.ar.add(r);
+					        b1.ar1.add(r);
+					        b1.helper();
+					        printfile(b1);
+							break;
+					case 5: System.out.println("Enter the record which you want to delete space separated");
+							s10 = br.readLine();
+							temp = s10.split(" ");
+							b1.delete(temp[1],temp[2]);
+							printfile(b1);
+							break;
+				}
+			}
+
+
+//       
+		
+		/*String ar[] = new String[]{"4","52","100","148","196","244","292","340","388","436" };
 		String ar1[] = new String[]{"Aman","Aman","Bman","Cman","Aman","an","Gama","Aaaa","Baaa","Caba"};
 		for(int i=0;i<10;i++)
 		{
 			b1.insert(ar1[i],ar[i]);
 		}
-		b1.find_original("Aman");
+		b1.find_original("Aman");*/
 	}
 }
