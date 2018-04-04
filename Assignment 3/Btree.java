@@ -55,9 +55,11 @@ class Btree1
 {
 	public node root;
 	public ArrayList <Record> ar;
+	public ArrayList <Record> ar1;
 	Btree1()
 	{
 		ar = new ArrayList <Record> ();
+		ar1 = new ArrayList <Record> ();
 	}
 	public node find(String V, int query)
 	{
@@ -102,6 +104,23 @@ class Btree1
 			}
 		}
 		return null;
+	}
+	public void helper()
+	{
+		for(int i=0;i<ar1.size()-1;i++)
+		{
+			int min=i;
+			for(int j=i+1;j<ar1.size();j++)
+			{
+				if(ar1.get(min).field.compareTo(ar1.get(j).field)<0)
+				{
+					min = j;
+				}
+			}
+			Record temp = ar1.get(min);
+			ar1.set(min,ar1.get(i));
+			ar1.set(i,temp);
+		}
 	}
 	public void printdata(String s , ArrayList<String> arr)
 	{
@@ -198,7 +217,7 @@ class Btree1
 				}
 				else if(n2.values.get(i).compareTo(v2)>0)
 				{
-					n2b = null;
+					n2 = null;
 					break;
 				}
 			}
@@ -266,6 +285,7 @@ class Btree1
 			String K1 = L1.values.get(0);
 			insert_in_parent(L,K1,L1);
 		}
+		helper();
 		print(root);
 	}
 	public void insert_in_leaf(node L , String K , String P)
